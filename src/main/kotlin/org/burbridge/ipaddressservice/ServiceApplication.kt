@@ -4,8 +4,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
 
 @SpringBootApplication
-class IpAddressServiceApplication
+class ServiceApplication
 
 fun main(args: Array<String>) {
-	runApplication<IpAddressServiceApplication>(*args)
+	runApplication<ServiceApplication>(*args)
 }
