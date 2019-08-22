@@ -1,15 +1,22 @@
 package org.burbridge.ipaddressservice
 
+import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.beans.factory.annotation.Value
 import org.springframework.web.bind.annotation.GetMapping
-import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
 
 @RestController
-@RequestMapping("/")
 class Controller {
 
-    @GetMapping
-    fun ipAddress(): DTO {
-        return DTO(ipAddress = "127.0.0.1")
-    }
+    @Autowired
+    lateinit var interfaces: Map<String, String>
+
+    @Value("\${info.app.name}")
+    lateinit var appName: String
+
+    @GetMapping("/")
+    fun appName() = appName
+
+    @GetMapping("/interfaces")
+    fun interfaces() = interfaces
 }
