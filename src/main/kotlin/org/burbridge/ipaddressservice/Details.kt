@@ -7,7 +7,7 @@ import java.net.NetworkInterface
 @Component
 class Details {
 
-    val localHost = InetAddress.getLocalHost()!!
+    private val localHost = InetAddress.getLocalHost()!!
 
     fun interfaces(): Map<String, List<String>> {
         val interfaces = mutableMapOf<String, List<String>>()
