@@ -9,16 +9,4 @@ import java.net.NetworkInterface
 @Configuration
 @EnableWebMvc
 class Config {
-
-    @Bean
-    fun interfaces(): Map<String, List<String>> {
-        val interfaces = mutableMapOf<String, List<String>>()
-        NetworkInterface.getNetworkInterfaces().toList().forEach { iface ->
-            interfaces[iface.displayName] = iface.inetAddresses.toList().map { it.hostAddress }
-        }
-        return interfaces
-    }
-
-    @Bean
-    fun localHost() = InetAddress.getLocalHost()
 }

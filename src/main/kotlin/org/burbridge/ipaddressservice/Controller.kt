@@ -2,9 +2,11 @@ package org.burbridge.ipaddressservice
 
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.beans.factory.annotation.Value
+import org.springframework.context.annotation.Bean
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.RestController
 import java.net.InetAddress
+import java.net.NetworkInterface
 
 @RestController
 class Controller(
@@ -12,10 +14,7 @@ class Controller(
         val appName: String,
 
         @Autowired
-        val localHost: InetAddress,
-
-        @Autowired
-        val interfaces: Map<String, List<String>>
+        val details: Details
 ) {
 
     @GetMapping("/")
@@ -23,6 +22,8 @@ class Controller(
 
     @GetMapping("/details")
     fun details(): Dto {
-        return Dto(hostname = localHost.hostName, fqdn = localHost.canonicalHostName, interfaces = interfaces)
+        return Dto(hostname = details.hostName(),
+                fqdn = details.canonicalHostName(),
+                interfaces = details.interfaces())
     }
 }
